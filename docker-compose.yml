@@ -1,0 +1,36 @@
+utt_proj:
+    image: busybox
+    volumes:
+        - /Lab/Elixir:/home/emacsdev/elixirproj
+    command: chown -R 1000:1000 /home/emacsdev
+    labels:
+        - "nature=data"
+
+elixir:
+    image: elixir
+    volumes: 
+        - /usr/local
+        - /usr/lib/erlang
+    labels:
+        - "nature=binary"
+
+spacemacs:
+    build: spacemacs
+    volumes:
+        - /home/emacsdev/.emacs.d
+    labels:
+        - "nature=data"
+
+emacs:
+    build: emacs
+    volumes_from:
+        - spacemacs
+        - elixir
+        - utt_proj
+    volumes:
+        - .spacemacs:/home/emacsdev/.spacemacs
+    environment:
+        - DISPLAY=10.0.2.2:0
+        - SHELL=bash
+    labels:
+        - "nature=process"
