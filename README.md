@@ -15,3 +15,6 @@ Install
 > cd docker-spacemacs-elixir.git
 > docker-compose up -d
 ```
+
+Enjoy!
+![](https://dl.dropboxusercontent.com/u/46951970/emacs-alchemist-dockerized.png)
